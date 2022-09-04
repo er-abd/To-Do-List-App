@@ -1,0 +1,29 @@
+{% extends 'main/main.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="edit-header-bar">
+        <a href="{% url 'tasks' %}"><i class="fa-solid fa-arrow-left"></i></a>
+    </div>
+    
+    
+    <div class="card-body">
+        <!--If action is empty that means it will be sent to the same url-->
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="button" type="submit" value="Submit" />
+        </form>
+    </div>
+</div>
+
+<div class="log">
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}"><div>Logout</div></a>
+    {% else %}
+        <a href="{% url 'logout' %}"><div>Logout</div></a>
+    {% endif %}
+</div>
+
+{% endblock content %}

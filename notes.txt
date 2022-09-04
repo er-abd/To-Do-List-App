@@ -1,0 +1,113 @@
+from django.http import HttpResponse
+models are classes that represent a table & that is how we build a DB in django.
+
+------------------
+
+# a clss-based view
+
+
+from django.http import HttpResponse
+
+
+def taskList(request):
+    return HttpResponse('This is a to do list app')
+
+
+------------------
+
+GENERAL STEPS:
+> create a project 
+> create an app 
+> connect the app to the project by: adding 'appname.apps.the-class-name-of-the-app'
+> create a urls.py in our app dir
+> add urlpatterns and import it in the same page first. and import the views 
+> create a view (Class-based or function-bassed). Clasa-based ones requie some imports
+> add a view path in the urls.py of the app and give it a name
+> link the urls.py of the app to the big one (urls.py of the project) using the include method.
+> now we can create models then makemigrations then migrate them.
+> register the app with the admin panel in admin.py.
+> create a template and django will link it to views.py (That will be done by the class-based view we careted) -> what you will see depends on the class-based views linked to the URL.
+* Django will look for a template with the prefix of the model name that we have inside our class-based view in views.py
+e.g 
+
+class TaskList(ListView):
+    model = Task
+
+
+* the name of the template linked to this view must start with "task"
+
+
+
+
+* when craeting a template loacte them in a dir named "templates" inside the app and craete another dir inside it and call it "the app name".
+* Next we need to render data we have -> Rendering data means interpolating the template with context data and returning the resulting string. The Django template language is Django's own template system.
+* TEMPLATES LOOK THIS DOCUMENTATION ---> "https://docs.djangoproject.com/en/4.1/topics/templates/#:~:text=Rendering%20means%20interpolating%20the%20template,is%20Django's%20own%20template%20system."
+
+
+
+* href="{% url 'task' task.id %}"
+In this we tell django to look for a URL with the name 'task' and get the object by task ID.
+
+
+---------------
+
+* What is the difference between *agrs and **kwargs?
+In every function in python, you need to pass in some arguments (parameters).
+The arguments can be added like this:
+
+def person(name):
+
+then we can call the funcation with the parameters like this:
+
+person('John')
+
+but if we are not sure about the arguments we want to use later we can just pass in a varaible length arguamnts e.g. *data
+
+def person(name, *data):
+    print(name)
+    print(data)
+
+person('John', 28, 'Manchester', 98745628)
+
+However, we cannot know what is 28 for example so a better way to deal with it is to use keywords variable length multiple arguments e.g. (**data) note that the ** is important here while data can be cahnged to anything like the most widely used "kwargs"
+
+def person(name, **data):
+    print(name)
+    print(data)
+
+person('John', age=28, city='Manchester', phone=98745628)
+
+We can also do a for loop:
+
+def person(name, **data):
+    print(name)
+    
+    for i,j in data.items():
+        print(i,j)
+
+person('John', age=28, city='Manchester', phone=98745628)
+
+
+i and j here refer to the key and the vakue respectivaly.
+
+---------------------------
+
+
+<form method="GET">
+  <!--the value can also be seen in the url and it changes as you add/delete text in the saerch bar.-->
+  <input type="text" name="search-area" value="{{search_input}}">
+  <input type="submit" value="Search">
+</form>
+
+
+
+
+# here we deal with the search functionality
+        # get the 'saerch_area' from the search_input GET mwthod if nothing in it then it is empty.
+        search_input = self.request.GET.get("search-area") or ''
+        # here we decide how we filter the data we get and how we use to search.
+        if search_input:
+            context['tasks'] = context['tasks'].filter(
+                title__startswith=search_input)
+
+        context['search_input'] = search_input
