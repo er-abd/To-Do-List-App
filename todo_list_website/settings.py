@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 
 import os
-import django_heroku
 
 from pathlib import Path
 
@@ -140,7 +139,6 @@ LOGIN_URL = 'login'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
