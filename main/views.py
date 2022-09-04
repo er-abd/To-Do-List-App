@@ -78,7 +78,7 @@ class TaskList(LoginRequiredMixin, ListView):
 
         # here we deal with the search functionality
         # get the 'saerch_area' from the search_input GET mwthod if nothing in it then it is empty.
-        search_input = self.request.GET.get("search-area") or ''
+        search_input = self.request.GET.get("search-area".lower) or ''
         # here we decide how we filter the data we get and how we use to search.
         if search_input:
             context['tasks'] = context['tasks'].filter(
