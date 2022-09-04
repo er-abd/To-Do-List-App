@@ -30,7 +30,8 @@ SECRET_KEY = 'django-insecure-13aslrm9+ku(7^a)9^e&_$*294&w$3+h7qyzkmabf5k=_v9hy8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'tick-task.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1',
+                 'tick-task.herokuapp.com', 'www.tick-task.alabdullah.me', 'tick-task.alabdullah.me']
 
 
 # Application definition
@@ -92,9 +93,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'd533lb3f3e3t5m',
-        'USER': 'fveoiqoiuoxvno',
-        'PASSWORD': 'c6d536bf4b67dc40396fa9bad1001d639efc4e960723d5ca6a3ace7b76e7b0ef',
-        'HOST': 'ec2-176-34-215-248.eu-west-1.compute.amazonaws.com',
+        'USER': os.environ.get('DB_USER_TODO'),
+        'PASSWORD': os.environ.get('DB_PASS_TODO'),
+        'HOST': os.environ.get('DB_HOST_TODO'),
         'PORT': '5432',
     }
 }
