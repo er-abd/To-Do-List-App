@@ -5,7 +5,6 @@ from multiprocessing import context
 from re import U
 from typing import List
 from urllib import request
-from winreg import CreateKey
 from django.shortcuts import render, redirect
 # this to use class-based views
 from django.views.generic.list import ListView
