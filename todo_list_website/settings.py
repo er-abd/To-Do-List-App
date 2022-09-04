@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-13aslrm9+ku(7^a)9^e&_$*294&w$3+h7qyzkmabf5k=_v9hy8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['tick-task.herokuapp.com']
 
@@ -146,3 +146,8 @@ django_heroku.settings(locals())
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# set it to false when we are not working locally i.e. when we are on heroku
+if os.getcwd() == '/app':
+    DEBUG = False
