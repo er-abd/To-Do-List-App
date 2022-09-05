@@ -17,6 +17,11 @@ import django_heroku
 from pathlib import Path
 
 
+CSRF_COOKIE_SECURE = False
+
+CSRF_TRUSTED_ORIGINS = ['https://*.tick-task.alabdullah.me']
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,7 +36,7 @@ SECRET_KEY = 'django-insecure-13aslrm9+ku(7^a)9^e&_$*294&w$3+h7qyzkmabf5k=_v9hy8
 DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1',
-                 'tick-task.herokuapp.com', 'www.tick-task.alabdullah.me', 'tick-task.alabdullah.me', 'alabdullah.me', 'www.alabdullah.me']
+                 'tick-task.herokuapp.com']
 
 
 # Application definition
